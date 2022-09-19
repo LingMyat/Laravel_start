@@ -20,6 +20,7 @@
                 <th>{{ substr($row->description, 0, 100)}}</th>
                 <th><a href="">View</a></th>
             </tr>
+            <?php $id++;?>
             @endforeach
           </table>
         </div>
