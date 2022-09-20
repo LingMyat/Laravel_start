@@ -16,7 +16,8 @@ class homeController extends Controller
      */
     public function index()
     {
-        $data = post::orderBy('id','desc')->get();
+        // $data = post::orderBy('id','desc')->get();
+        $data = Post::all();
         $id = 1;
         return view('home',['data'=>$data,'id'=>$id]);
     }
@@ -52,12 +53,12 @@ class homeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Post $home)
     {
         // $table = post::where('id',$id)->get(); self try
-        $table = post::findOrFail($id);
+        // $table = post::findOrFail($id);
         // sayar way is more easy
-        return view('page',['table'=>$table]);
+        return view('page',['table'=>$home]);
     }
 
     /**
@@ -66,10 +67,10 @@ class homeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Post $home)
     {
-        $table = post::findOrFail($id);
-        return view('edit',['table'=>$table]);
+        // $table = post::findOrFail($id);
+        return view('edit',['table'=>$home]);
     }
 
     /**
@@ -79,12 +80,12 @@ class homeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Post $home)
     {
-        $currentRow = post::findOrFail($id);
-        $currentRow->name = $request->name;
-        $currentRow->description = $request->description;
-        $currentRow->save();
+        // $currentRow = post::findOrFail($id);
+        $home->name = $request->name;
+        $home->description = $request->description;
+        $home->save();
         return redirect("/home");
 
     }
@@ -95,9 +96,9 @@ class homeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Post $home)
     {
-        post::findOrFail($id)->delete();
+        $home->delete();
         return redirect("/home");
     }
 }
