@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\storePostRequest;
 use App\Models\post;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -38,12 +39,17 @@ class homeController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(storePostRequest $request)
     {
-        $post = new post();
-        $post->name = $request->name;
-        $post->description = $request->description;
-        $post->save();
+
+        // $post = new post();
+        // $post->name = $request->name;
+        // $post->description = $request->description;
+        // $post->save();
+        Post::create([
+            'name'=>$request->name,
+            'description'=>$request->description,
+        ]);
         return redirect("/home");
     }
 
@@ -58,6 +64,7 @@ class homeController extends Controller
         // $table = post::where('id',$id)->get(); self try
         // $table = post::findOrFail($id);
         // sayar way is more easy
+
         return view('page',['table'=>$home]);
     }
 
@@ -80,12 +87,17 @@ class homeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Post $home)
+    public function update(storePostRequest $request, Post $home)
     {
+
         // $currentRow = post::findOrFail($id);
-        $home->name = $request->name;
-        $home->description = $request->description;
-        $home->save();
+        // $home->name = $request->name;
+        // $home->description = $request->description;
+        // $home->save();
+        $home->update([
+            'name'=>$request->name,
+            'description'=>$request->description,
+        ]);
         return redirect("/home");
 
     }

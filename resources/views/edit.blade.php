@@ -13,13 +13,18 @@
                 @method('PUT')
                 <div class="mb-3">
                   <label for="exampleInputEmail1" class="form-label">Title</label>
-                  <input type="text" name="name" value="{{$table->name}}" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                  <input type="text" name="name" value="{{old('name',$table->name)}}" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
                 </div>
+                @error('name')
+                    <div class="alert alert-danger">{{$message}}</div>
+                @enderror
                 <div class="mb-3">
                   <label for="exampleInputPassword1" class="form-label">Description</label>
-                  <textarea id="" name="description" class=" form-control" rows="8">{{$table->description}}</textarea>
+                  <textarea id="" name="description" class=" form-control" rows="8">{{old('description',$table->description)}}</textarea>
                 </div>
-
+                @error('description')
+                    <div class="alert alert-danger">{{$message}}</div>
+                @enderror
                 <button type="submit" class="btn btn-primary float-end">Save</button>
               </form>
 

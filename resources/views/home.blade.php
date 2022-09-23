@@ -37,4 +37,7 @@
             @endforeach
           </table>
         </div>
+        <div class="card-footer">
+            <a href="logout" class=" btn btn-primary float-end me-2">Logout</a>
+        </div>
 @endsection
